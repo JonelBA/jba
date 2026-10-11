@@ -1,972 +1,266 @@
-// ============================================================
-// Theme
-// ============================================================
+/*
+ * Portfolio scripts: theme, accessible navigation, header behavior,
+ * project carousel, image preview, contact form (EmailJS), copyright year.
+ */
+(() => {
+    'use strict';
 
-const themeToggle = document.querySelector('.theme-toggle');
-const savedTheme = localStorage.getItem('portfolio-theme');
-const initialTheme = savedTheme === 'light' ? 'light' : 'dark';
+    const root = document.documentElement;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.documentElement.dataset.theme = initialTheme;
+    /* ---------- Storage (can be blocked by the browser) ---------- */
+    const store = {
+        get(key) { try { return window.localStorage.getItem(key); } catch (error) { return null; } },
+        set(key, value) { try { window.localStorage.setItem(key, value); } catch (error) { /* ignore */ } }
+    };
 
-function updateThemeToggle(theme) {
-    if (!themeToggle) return;
+    /* ---------- Theme ---------- */
+    // The inline script in <head> applies the saved theme before first paint; this keeps the button in sync.
+    const themeToggle = document.querySelector('.theme-toggle');
 
-    const lightMode = theme === 'light';
-    const nextModeLabel = lightMode
-        ? 'dark mode'
-        : 'light mode';
-
-    themeToggle.setAttribute(
-        'aria-pressed',
-        String(lightMode)
-    );
-
-    themeToggle.setAttribute(
-        'aria-label',
-        `Switch to ${nextModeLabel}`
-    );
-
-    themeToggle.setAttribute(
-        'title',
-        `Switch to ${nextModeLabel}`
-    );
-
-    const label =
-        themeToggle.querySelector('.theme-label');
-
-    if (label) {
-        label.textContent =
-            lightMode ? 'Dark mode' : 'Light mode';
+    function updateThemeToggle(theme) {
+        if (!themeToggle) return;
+        const lightMode = theme === 'light';
+        const nextModeLabel = lightMode ? 'dark mode' : 'light mode';
+        themeToggle.setAttribute('aria-pressed', String(lightMode));
+        themeToggle.setAttribute('aria-label', 'Switch to ' + nextModeLabel);
+        themeToggle.setAttribute('title', 'Switch to ' + nextModeLabel);
+        const label = themeToggle.querySelector('.theme-label');
+        if (label) label.textContent = lightMode ? 'Dark mode' : 'Light mode';
     }
-}
 
-updateThemeToggle(initialTheme);
+    root.dataset.theme = store.get('portfolio-theme') === 'light' ? 'light' : 'dark';
+    updateThemeToggle(root.dataset.theme);
 
-themeToggle?.addEventListener('click', () => {
-
-    const nextTheme =
-        document.documentElement.dataset.theme === 'light'
-            ? 'dark'
-            : 'light';
-
-    document.documentElement.dataset.theme =
-        nextTheme;
-
-    localStorage.setItem(
-        'portfolio-theme',
-        nextTheme
-    );
-
-    updateThemeToggle(nextTheme);
-});
-
-
-// ============================================================
-// Scroll Reveal
-// ============================================================
-
-if (typeof AOS !== 'undefined') {
-
-    AOS.init({
-        duration: 650,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 80,
-        mirror: false
-    });
-
-}
-
-
-// ============================================================
-// Mobile Navigation
-// ============================================================
-
-const hamburger =
-    document.getElementById('hamburger');
-
-const navLinks =
-    document.getElementById('navLinks');
-
-
-function setMenuOpen(open) {
-
-    if (!hamburger || !navLinks) return;
-
-    hamburger.classList.toggle(
-        'active',
-        open
-    );
-
-    navLinks.classList.toggle(
-        'active',
-        open
-    );
-
-    hamburger.setAttribute(
-        'aria-expanded',
-        String(open)
-    );
-
-    hamburger.setAttribute(
-        'aria-label',
-        open
-            ? 'Close navigation'
-            : 'Open navigation'
-    );
-
-    hamburger.querySelectorAll(
-        '.line'
-    ).forEach((line, index) => {
-
-        line.style.transform = '';
-        line.style.opacity = '';
-
-        if (open && index === 0) {
-
-            line.style.transform =
-                'translateY(9px) rotate(45deg)';
-
-        }
-
-        if (open && index === 1) {
-
-            line.style.opacity = '0';
-
-        }
-
-        if (open && index === 2) {
-
-            line.style.transform =
-                'translateY(-9px) rotate(-45deg)';
-
-        }
-
-    });
-
-}
-
-
-hamburger?.addEventListener(
-    'click',
-    () => {
-
-        setMenuOpen(
-            !hamburger.classList.contains(
-                'active'
-            )
-        );
-
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const nextTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
+            root.dataset.theme = nextTheme;
+            store.set('portfolio-theme', nextTheme);
+            updateThemeToggle(nextTheme);
+        });
     }
-);
 
-
-document
-    .querySelectorAll('#navLinks a')
-    .forEach(link => {
-
-        link.addEventListener(
-            'click',
-            () => setMenuOpen(false)
-        );
-
-    });
-
-
-// ============================================================
-// Header Scroll State
-// ============================================================
-
-const header =
-    document.querySelector('header');
-
-let lastScrollTop =
-    window.pageYOffset ||
-    document.documentElement.scrollTop ||
-    0;
-
-
-window.addEventListener(
-    'scroll',
-    () => {
-
-        if (!header) return;
-
-        const currentScroll =
-            window.pageYOffset ||
-            document.documentElement.scrollTop ||
-            0;
-
-        header.style.boxShadow =
-            currentScroll > 50
-                ? '0 5px 20px rgba(0,0,0,0.2)'
-                : 'none';
-
-
-        if (
-            currentScroll >
-                lastScrollTop + 4 &&
-            currentScroll > 80
-        ) {
-
-            header.classList.add(
-                'hide-nav'
-            );
-
-        } else if (
-            currentScroll <
-                lastScrollTop - 4 ||
-            currentScroll <= 20
-        ) {
-
-            header.classList.remove(
-                'hide-nav'
-            );
-
-        }
-
-
-        lastScrollTop =
-            Math.max(
-                0,
-                currentScroll
-            );
-
-    },
-    {
-        passive: true
+    /* ---------- Scroll reveal (AOS) with a safe fallback ---------- */
+    if (typeof AOS !== 'undefined' && !reduceMotion) {
+        AOS.init({ duration: 650, easing: 'ease-out-cubic', once: true, offset: 80, mirror: false });
+    } else {
+        // AOS missing or motion reduced: never leave content hidden.
+        document.querySelectorAll('[data-aos]').forEach(element => {
+            element.removeAttribute('data-aos');
+            element.removeAttribute('data-aos-delay');
+        });
     }
-);
 
+    /* ---------- Mobile navigation ---------- */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
 
-// ============================================================
-// Smooth Scrolling
-// ============================================================
+    const menuIsOpen = () => Boolean(hamburger && hamburger.getAttribute('aria-expanded') === 'true');
 
-document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(anchor => {
+    function setMenu(open) {
+        if (!hamburger || !navLinks) return;
+        hamburger.setAttribute('aria-expanded', String(open));
+        hamburger.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        hamburger.classList.toggle('active', open);
+        navLinks.classList.toggle('active', open);
+    }
 
-        anchor.addEventListener(
-            'click',
-            function (event) {
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => setMenu(!menuIsOpen()));
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && menuIsOpen()) { setMenu(false); hamburger.focus(); }
+        });
+        if (mobileQuery.addEventListener) {
+            mobileQuery.addEventListener('change', () => { if (!mobileQuery.matches) setMenu(false); });
+        }
+    }
 
-                const href =
-                    this.getAttribute(
-                        'href'
-                    );
+    /* ---------- Header: shadow and hide on scroll down ---------- */
+    const header = document.querySelector('header');
+    let lastScrollTop = window.scrollY || 0;
+    let ticking = false;
 
-                if (
-                    !href ||
-                    href === '#'
-                ) {
-                    return;
-                }
-
-                const target =
-                    document.querySelector(
-                        href
-                    );
-
-                if (!target) {
-                    return;
-                }
-
-                event.preventDefault();
-
-                window.scrollTo({
-
-                    top:
-                        target.offsetTop - 80,
-
-                    behavior:
-                        'smooth'
-
-                });
-
+    function onScroll() {
+        const current = window.scrollY || document.documentElement.scrollTop || 0;
+        if (header) {
+            header.style.boxShadow = current > 50 ? '0 5px 20px rgba(0,0,0,0.2)' : 'none';
+            if (current > lastScrollTop + 4 && current > 80 && !menuIsOpen()) {
+                header.classList.add('hide-nav');
+            } else if (current < lastScrollTop - 4 || current <= 20) {
+                header.classList.remove('hide-nav');
             }
-        );
+        }
+        lastScrollTop = Math.max(0, current);
+        ticking = false;
+    }
 
+    window.addEventListener('scroll', () => {
+        if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive: true });
+
+    if (header) header.addEventListener('focusin', () => header.classList.remove('hide-nav'));
+
+    /* ---------- Project carousel ---------- */
+    document.querySelectorAll('[data-carousel]').forEach(carousel => {
+        const track = carousel.querySelector('.works-carousel-track');
+        const cards = Array.from(carousel.querySelectorAll('.project-card-carousel'));
+        if (!track || cards.length < 2) return;
+
+        const controls = document.querySelector('[data-carousel-controls]');
+        let active = 0;
+        let timer = null;
+        let userInteracted = false;
+
+        const goTo = index => {
+            active = (index + cards.length) % cards.length;
+            track.scrollTo({ left: cards[active].offsetLeft - track.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+        };
+
+        let syncTimer = null;
+        track.addEventListener('scroll', () => {
+            window.clearTimeout(syncTimer);
+            syncTimer = window.setTimeout(() => {
+                let best = 0, bestDistance = Infinity;
+                cards.forEach((card, index) => {
+                    const distance = Math.abs(card.offsetLeft - track.offsetLeft - track.scrollLeft);
+                    if (distance < bestDistance) { best = index; bestDistance = distance; }
+                });
+                active = best;
+            }, 120);
+        }, { passive: true });
+
+        const stop = () => { if (timer) { window.clearInterval(timer); timer = null; } };
+        const start = () => {
+            if (reduceMotion || userInteracted || timer || document.hidden) return;
+            timer = window.setInterval(() => goTo(active + 1), 5000);
+        };
+        const interact = () => { userInteracted = true; stop(); };
+
+        if (controls) {
+            const prev = controls.querySelector('[data-carousel-prev]');
+            const next = controls.querySelector('[data-carousel-next]');
+            if (prev) prev.addEventListener('click', () => { interact(); goTo(active - 1); });
+            if (next) next.addEventListener('click', () => { interact(); goTo(active + 1); });
+        }
+
+        ['mouseenter', 'focusin', 'touchstart'].forEach(name => carousel.addEventListener(name, stop, { passive: true }));
+        carousel.addEventListener('mouseleave', start);
+        carousel.addEventListener('focusout', start);
+        document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+        start();
     });
 
+    /* ---------- Image preview (work page) ---------- */
+    const imageModal = document.getElementById('imageModal');
+    const imageModalClose = document.getElementById('imageModalClose');
+    const imageModalImg = document.getElementById('imageModalImg');
+    let lastTrigger = null;
 
-// ============================================================
-// EmailJS Contact Form
-// ============================================================
+    const setBackgroundInert = value => {
+        document.querySelectorAll('header, main, footer').forEach(element => { element.inert = value; });
+    };
 
-const emailJsConfig = {
+    function openImageModal(trigger) {
+        const source = trigger && trigger.getAttribute('data-img');
+        if (!source || !imageModal || !imageModalImg) return;
+        lastTrigger = trigger;
+        imageModalImg.src = source;
+        imageModalImg.alt = trigger.getAttribute('data-img-alt') || 'Project full-size preview';
+        imageModal.classList.add('open');
+        imageModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        setBackgroundInert(true);
+        if (imageModalClose) imageModalClose.focus();
+    }
 
-    publicKey:
-        'yipLmWU_DtuGyaVDa',
+    function closeImageModal() {
+        if (!imageModal || !imageModal.classList.contains('open')) return;
+        imageModal.classList.remove('open');
+        imageModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        setBackgroundInert(false);
+        if (imageModalImg) imageModalImg.removeAttribute('src');
+        if (lastTrigger) lastTrigger.focus();
+    }
 
-    serviceId:
-        'service_6b0t2o8',
+    document.querySelectorAll('.project-image-clickable').forEach(trigger => {
+        trigger.addEventListener('click', () => openImageModal(trigger));
+    });
+    if (imageModalClose) imageModalClose.addEventListener('click', closeImageModal);
+    if (imageModal) imageModal.addEventListener('click', event => { if (event.target === imageModal) closeImageModal(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeImageModal(); });
 
-    templateId:
-        'template_pctgzjb'
+    /* ---------- Contact form (EmailJS) ---------- */
+    // In the EmailJS dashboard, restrict the allowed domains to your portfolio and enable
+    // reCAPTCHA so these public IDs cannot be misused.
+    const emailJsConfig = {
+        publicKey: 'yipLmWU_DtuGyaVDa',
+        serviceId: 'service_6b0t2o8',
+        templateId: 'template_pctgzjb'
+    };
+    const FALLBACK_EMAIL = 'andamonjonel06@gmail.com';
+    const COOLDOWN_MS = 30000;
 
-};
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    let lastSent = 0;
 
+    function showStatus(message, kind) {
+        if (!formStatus) return;
+        formStatus.textContent = message;
+        formStatus.className = kind ? 'form-status ' + kind : 'form-status';
+    }
 
-const contactForm =
-    document.getElementById(
-        'contactForm'
-    );
-
-
-const formStatus =
-    document.getElementById(
-        'formStatus'
-    );
-
-
-if (
-    contactForm &&
-    formStatus
-) {
-
-    contactForm.addEventListener(
-        'submit',
-        async event => {
-
+    if (contactForm && formStatus) {
+        contactForm.addEventListener('submit', async event => {
             event.preventDefault();
 
-
-            const submitButton =
-                contactForm.querySelector(
-                    'button[type="submit"]'
-                );
-
-
-            // ------------------------------------------------
-            // Check EmailJS library
-            // ------------------------------------------------
+            // Honeypot: real visitors never fill this hidden field.
+            const trap = contactForm.querySelector('[name="website"]');
+            if (trap && trap.value) { showStatus('Your message was sent successfully.', 'is-success'); return; }
 
             if (!window.emailjs) {
-
-                formStatus.textContent =
-                    'EmailJS could not be loaded. Please contact me directly by email.';
-
-                formStatus.className =
-                    'form-status is-error';
-
-                console.error(
-                    'EMAILJS ERROR: EmailJS library is not available.'
-                );
-
+                showStatus('The message service could not load. Please email me directly at ' + FALLBACK_EMAIL + '.', 'is-error');
+                return;
+            }
+            if (Date.now() - lastSent < COOLDOWN_MS) {
+                showStatus('Please wait a few seconds before sending another message.', 'is-error');
                 return;
             }
 
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            showStatus('', '');
 
-            // ------------------------------------------------
-            // Disable submit button
-            // ------------------------------------------------
-
-            submitButton?.setAttribute(
-                'disabled',
-                'disabled'
-            );
-
-
-            if (submitButton) {
-
-                submitButton.textContent =
-                    'Sending...';
-
-            }
-
-
-            formStatus.textContent = '';
-
-            formStatus.className =
-                'form-status';
-
+            const field = name => (contactForm.elements[name] ? contactForm.elements[name].value.trim() : '');
+            const params = {
+                name: field('name'), email: field('email'), title: field('subject'), subject: field('subject'),
+                message: field('message'), user_name: field('name'), user_email: field('email'),
+                from_name: field('name'), reply_to: field('email')
+            };
 
             try {
-
-                // --------------------------------------------
-                // Initialize EmailJS
-                // --------------------------------------------
-
-                emailjs.init({
-
-                    publicKey:
-                        emailJsConfig.publicKey
-
-                });
-
-
-                // --------------------------------------------
-                // Read form values
-                // --------------------------------------------
-
-                const nameValue =
-                    contactForm.elements.name?.value.trim() || '';
-
-
-                const emailValue =
-                    contactForm.elements.email?.value.trim() || '';
-
-
-                const subjectValue =
-                    contactForm.elements.subject?.value.trim() || '';
-
-
-                const messageValue =
-                    contactForm.elements.message?.value.trim() || '';
-
-
-                // --------------------------------------------
-                // Create EmailJS-compatible fields
-                // --------------------------------------------
-                //
-                // Your EmailJS template uses:
-                //
-                // {{name}}
-                // {{email}}
-                // {{title}}
-                // {{message}}
-                //
-                // Your HTML form uses:
-                //
-                // name
-                // email
-                // subject
-                // message
-                //
-                // Therefore "subject" is mapped to "title".
-                // --------------------------------------------
-
-                const syncField = (
-                    name,
-                    value
-                ) => {
-
-                    let field =
-                        contactForm.querySelector(
-                            `[data-emailjs-field="${name}"]`
-                        );
-
-
-                    if (!field) {
-
-                        field =
-                            document.createElement(
-                                'input'
-                            );
-
-                        field.type =
-                            'hidden';
-
-                        field.name =
-                            name;
-
-                        field.dataset.emailjsField =
-                            name;
-
-                        contactForm.appendChild(
-                            field
-                        );
-
-                    }
-
-
-                    field.value =
-                        value;
-
-                };
-
-
-                syncField(
-                    'user_name',
-                    nameValue
-                );
-
-
-                syncField(
-                    'user_email',
-                    emailValue
-                );
-
-
-                syncField(
-                    'title',
-                    subjectValue
-                );
-
-
-                syncField(
-                    'from_name',
-                    nameValue
-                );
-
-
-                syncField(
-                    'reply_to',
-                    emailValue
-                );
-
-
-                // --------------------------------------------
-                // Debug information
-                // --------------------------------------------
-
-                console.log(
-                    'EMAILJS DEBUG VERSION LOADED'
-                );
-
-
-                console.log(
-                    'EmailJS configuration:',
-                    {
-                        serviceId:
-                            emailJsConfig.serviceId,
-
-                        templateId:
-                            emailJsConfig.templateId,
-
-                        publicKey:
-                            emailJsConfig.publicKey
-                    }
-                );
-
-
-                console.log(
-                    'EmailJS form data:',
-                    {
-                        name:
-                            nameValue,
-
-                        email:
-                            emailValue,
-
-                        title:
-                            subjectValue,
-
-                        message:
-                            messageValue
-                    }
-                );
-
-
-                // --------------------------------------------
-                // Send email
-                // --------------------------------------------
-
-                await emailjs.sendForm(
-
-                    emailJsConfig.serviceId,
-
-                    emailJsConfig.templateId,
-
-                    contactForm
-
-                );
-
-
-                // --------------------------------------------
-                // Success
-                // --------------------------------------------
-
+                window.emailjs.init({ publicKey: emailJsConfig.publicKey });
+                await window.emailjs.send(emailJsConfig.serviceId, emailJsConfig.templateId, params);
+                lastSent = Date.now();
                 contactForm.reset();
-
-                formStatus.textContent =
-                    'Your message was sent successfully.';
-
-                formStatus.className =
-                    'form-status is-success';
-
-
-                console.log(
-                    'EMAILJS SUCCESS: Message sent successfully.'
-                );
-
+                showStatus('Your message was sent successfully.', 'is-success');
+            } catch (error) {
+                showStatus('Something went wrong. Please try again, or email me directly at ' + FALLBACK_EMAIL + '.', 'is-error');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
             }
-
-
-            // =================================================
-            // EMAILJS ERROR
-            // =================================================
-
-            catch (error) {
-
-                console.error(
-                    'EMAILJS SEND FAILED:',
-                    error
-                );
-
-
-                console.error(
-                    'EMAILJS ERROR STATUS:',
-                    error?.status
-                );
-
-
-                console.error(
-                    'EMAILJS ERROR TEXT:',
-                    error?.text
-                );
-
-
-                console.error(
-                    'EMAILJS ERROR MESSAGE:',
-                    error?.message
-                );
-
-
-                // --------------------------------------------
-                // Extract actual error
-                // --------------------------------------------
-
-                const errorMessage =
-
-                    error?.text ||
-
-                    error?.message ||
-
-                    'Unknown EmailJS error';
-
-
-                // --------------------------------------------
-                // IMPORTANT:
-                // Show the REAL EmailJS error temporarily.
-                // --------------------------------------------
-
-                formStatus.textContent =
-                    `EmailJS Error: ${errorMessage}`;
-
-
-                formStatus.className =
-                    'form-status is-error';
-
-
-                console.log(
-                    'EmailJS error details:',
-                    {
-
-                        status:
-                            error?.status,
-
-                        text:
-                            error?.text,
-
-                        message:
-                            error?.message,
-
-                        fullError:
-                            error
-
-                    }
-                );
-
-            }
-
-
-            // =================================================
-            // Re-enable button
-            // =================================================
-
-            finally {
-
-                submitButton?.removeAttribute(
-                    'disabled'
-                );
-
-
-                if (submitButton) {
-
-                    submitButton.textContent =
-                        'Send Message';
-
-                }
-
-            }
-
-        }
-    );
-
-}
-
-
-// ============================================================
-// Project Carousel
-// ============================================================
-
-const carouselTimers = [];
-
-
-document
-    .querySelectorAll('[data-carousel]')
-    .forEach(carousel => {
-
-        const track =
-            carousel.querySelector(
-                '.works-carousel-track'
-            );
-
-
-        const cards = [
-            ...carousel.querySelectorAll(
-                '.project-card-carousel'
-            )
-        ];
-
-
-        if (
-            !track ||
-            cards.length < 2
-        ) {
-
-            return;
-
-        }
-
-
-        let activeCard = 0;
-
-
-        const timer =
-            window.setInterval(
-                () => {
-
-                    activeCard =
-                        (
-                            activeCard + 1
-                        ) %
-                        cards.length;
-
-
-                    track.scrollTo({
-
-                        left:
-                            cards[
-                                activeCard
-                            ].offsetLeft,
-
-                        behavior:
-                            'smooth'
-
-                    });
-
-                },
-                4000
-            );
-
-
-        carouselTimers.push(
-            timer
-        );
-
-    });
-
-
-// ============================================================
-// Image Modal
-// ============================================================
-
-const imageModal =
-    document.getElementById(
-        'imageModal'
-    );
-
-
-const imageModalClose =
-    document.getElementById(
-        'imageModalClose'
-    );
-
-
-const imageModalImg =
-    document.getElementById(
-        'imageModalImg'
-    );
-
-
-const openImageModal =
-    trigger => {
-
-        const imgSrc =
-            trigger?.getAttribute(
-                'data-img'
-            );
-
-
-        if (
-            !imgSrc ||
-            !imageModal ||
-            !imageModalImg
-        ) {
-
-            return;
-
-        }
-
-
-        const imgAlt =
-            trigger.getAttribute(
-                'data-img-alt'
-            ) ||
-            'Project full-size preview';
-
-
-        imageModalImg.src =
-            imgSrc;
-
-
-        imageModalImg.alt =
-            imgAlt;
-
-
-        imageModal.classList.add(
-            'open'
-        );
-
-
-        imageModal.setAttribute(
-            'aria-hidden',
-            'false'
-        );
-
-
-        document.body.classList.add(
-            'modal-open'
-        );
-
-
-        imageModalClose?.focus();
-
-    };
-
-
-document
-    .querySelectorAll(
-        '.project-image-clickable'
-    )
-    .forEach(trigger => {
-
-        trigger.addEventListener(
-            'click',
-            () => {
-
-                openImageModal(
-                    trigger
-                );
-
-            }
-        );
-
-    });
-
-
-const closeModal =
-    () => {
-
-        if (!imageModal) {
-            return;
-        }
-
-
-        imageModal.classList.remove(
-            'open'
-        );
-
-
-        imageModal.setAttribute(
-            'aria-hidden',
-            'true'
-        );
-
-
-        document.body.classList.remove(
-            'modal-open'
-        );
-
-
-        if (imageModalImg) {
-
-            imageModalImg.src = '';
-
-        }
-
-    };
-
-
-imageModalClose?.addEventListener(
-    'click',
-    closeModal
-);
-
-
-imageModal?.addEventListener(
-    'click',
-    event => {
-
-        if (
-            event.target ===
-            imageModal
-        ) {
-
-            closeModal();
-
-        }
-
+        });
     }
-);
 
+    /* ---------- Footer year ---------- */
+    const copyright = document.querySelector('.copyright');
+    if (copyright) copyright.textContent = '\u00A9 ' + new Date().getFullYear() + ' Jonel Andamon. ALL RIGHTS RESERVED.';
 
-document.addEventListener(
-    'keydown',
-    event => {
-
-        if (
-            event.key ===
-            'Escape'
-        ) {
-
-            closeModal();
-
-        }
-
-    }
-);
-
-
-// ============================================================
-// Page Loaded State
-// ============================================================
-
-window.addEventListener(
-    'load',
-    () => {
-
-        document.body.classList.add(
-            'loaded'
-        );
-
-    }
-);
-
-
-// ============================================================
-// Dynamic Copyright Year
-// ============================================================
-
-document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-
-        const copyrightElem =
-            document.querySelector(
-                '.copyright'
-            );
-
-
-        if (copyrightElem) {
-
-            copyrightElem.textContent =
-                `© ${new Date().getFullYear()} Jonel Andamon. ALL RIGHTS RESERVED.`;
-
-        }
-
-    }
-);
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+})();
