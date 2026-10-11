@@ -3,34 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jonel Andamon's technical skills in software development, web development, databases, embedded systems, and hardware-software integration.">
-    <title>Jonel Andamon | Skills</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <link rel="stylesheet" href="assets/css/portfolio.css">
+    <title>Skills | Jonel Andamon</title>
+    <meta name="description" content="Jonel Andamon&#x27;s technical skills in software development, web development, databases, embedded systems, and hardware-software integration.">
+    <meta name="theme-color" content="#0d0f0e">
+    <link rel="canonical" href="https://jonelba.github.io/myportfolio/skill.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jonel Andamon">
+    <meta property="og:title" content="Skills | Jonel Andamon">
+    <meta property="og:description" content="Jonel Andamon&#x27;s technical skills in software development, web development, databases, embedded systems, and hardware-software integration.">
+    <meta property="og:url" content="https://jonelba.github.io/myportfolio/skill.html">
+    <meta property="og:image" content="https://jonelba.github.io/myportfolio/assets/images/branding/og-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" sizes="64x64" href="assets/images/branding/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/branding/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendor/aos.css">
+    <link rel="stylesheet" href="assets/css/portfolio.css">
+    <script>try{var t=localStorage.getItem('portfolio-theme');document.documentElement.dataset.theme=t==='light'?'light':'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
+    <noscript><style>[data-aos]{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
     <div class="top-shadow"></div>
     <div class="bottom-shadow"></div>
 
     <header>
         <div class="nav-container">
             <div class="mobile-logo">
-                <a href="index.html"><img src="assets/images/branding/logo.png" alt="Jonel Andamon home"></a>
+                <a href="index.html" aria-label="Jonel Andamon, home"><img src="assets/images/branding/logo.png" alt="" width="40" height="40"></a>
             </div>
             <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
             </button>
-            <nav class="nav-links" id="navLinks">
+            <nav class="nav-links" id="navLinks" aria-label="Main">
                 <a href="about.html" data-aos="fade-down">About</a>
                 <a href="work.html" data-aos="fade-down" data-aos-delay="100">Work</a>
                 <div class="logo" data-aos="fade-down" data-aos-delay="200">
-                    <a href="index.html"><img src="assets/images/branding/logo.png" alt="Jonel Andamon home"></a>
+                    <a href="index.html" aria-label="Jonel Andamon, home"><img src="assets/images/branding/logo.png" alt="" width="40" height="40"></a>
                 </div>
-                <a href="skill.html" data-aos="fade-down" data-aos-delay="300" class="active">Skills</a>
+                <a class="active" aria-current="page" href="skill.html" data-aos="fade-down" data-aos-delay="300">Skills</a>
                 <a href="contact.html" data-aos="fade-down" data-aos-delay="400">Contact</a>
             </nav>
             <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" aria-pressed="false">
@@ -39,6 +54,8 @@
             </button>
         </div>
     </header>
+
+    <main id="main">
 
     <section class="hero skills-hero" data-aos="fade-up" data-aos-delay="500">
         <div class="container">
@@ -51,9 +68,10 @@
 
     <section class="section dark-section">
         <div class="container">
-            <div class="vertical-skills">
+            <h2 class="sr-only">Skills overview</h2>
+<div class="vertical-skills">
                 <div class="skill-group" data-aos="fade-up">
-                    <h3>Programming & Web Development</h3>
+                    <h3>Programming &amp; Web Development</h3>
                     
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
@@ -102,14 +120,23 @@
                             </svg>
                         </div>
                         <div class="skill-content">
-                            <h4>HTML5 & CSS3</h4>
+                            <h4>HTML5 &amp; CSS3</h4>
                             <p>Responsive interfaces, kiosk screens, dashboards, layouts, and user-facing web experiences.</p>
                         </div>
                     </div>
+<div class="skill-item-with-icon">
+<div class="skill-icon">
+<span class="emoji" aria-hidden="true">⌨️</span>
+</div>
+<div class="skill-content">
+<h4>C++</h4>
+<p>Arduino firmware and microcontroller programming.</p>
+</div>
+</div>
                 </div>
 
                 <div class="skill-group" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Backend & Data</h3>
+                    <h3>Backend &amp; Data</h3>
                     
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
@@ -133,7 +160,7 @@
                         </div>
                         <div class="skill-content">
                             <h4>MySQL</h4>
-                            <p>Relational database design, data modeling, complex queries, and database optimization.</p>
+                            <p>Relational database design, data modeling, and queries for full-stack web applications.</p>
                         </div>
                     </div>
 
@@ -145,7 +172,7 @@
                             </svg>
                         </div>
                         <div class="skill-content">
-                            <h4>SQL & SQLite</h4>
+                            <h4>SQL &amp; SQLite</h4>
                             <p>Relational data storage, user records, transaction data, system logs, and local application databases.</p>
                         </div>
                     </div>
@@ -165,7 +192,7 @@
                 </div>
 
                 <div class="skill-group" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Embedded Systems & Hardware Integration</h3>
+                    <h3>Embedded Systems &amp; Hardware Integration</h3>
                     
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
@@ -182,7 +209,7 @@
 
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">📡</span>
+                            <span class="emoji" aria-hidden="true">📡</span>
                         </div>
                         <div class="skill-content">
                             <h4>RFID Systems</h4>
@@ -192,13 +219,31 @@
 
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">⚙️</span>
+                            <span class="emoji" aria-hidden="true">⚙️</span>
                         </div>
                         <div class="skill-content">
                             <h4>Hardware Integration</h4>
                             <p>Integration of RFID readers, GPIO/I2C devices, electronic locks, sensors, cameras, and touchscreen interfaces.</p>
                         </div>
                     </div>
+<div class="skill-item-with-icon">
+<div class="skill-icon">
+<span class="emoji" aria-hidden="true">🔌</span>
+</div>
+<div class="skill-content">
+<h4>Arduino &amp; ESP Boards</h4>
+<p>Arduino Uno, Arduino Nano, ESP32, and ESP8266, including a Sentry2 vision-sensor inspection prototype.</p>
+</div>
+</div>
+<div class="skill-item-with-icon">
+<div class="skill-icon">
+<span class="emoji" aria-hidden="true">🔗</span>
+</div>
+<div class="skill-content">
+<h4>Communication Interfaces</h4>
+<p>SPI, I2C, and RS-232 serial communication with RFID readers, I/O expanders, and sensors.</p>
+</div>
+</div>
                 </div>
 
                 <div class="skill-group" data-aos="fade-up" data-aos-delay="250">
@@ -212,7 +257,7 @@
                             </svg>
                         </div>
                         <div class="skill-content">
-                            <h4>Flutter & Dart</h4>
+                            <h4>Flutter &amp; Dart</h4>
                             <p>Cross-platform mobile application development, UI/UX implementation, and frontend mobile interfaces.</p>
                         </div>
                     </div>
@@ -223,7 +268,7 @@
                     
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">🔧</span>
+                            <span class="emoji" aria-hidden="true">🔧</span>
                         </div>
                         <div class="skill-content">
                             <h4>System Integration</h4>
@@ -233,17 +278,26 @@
 
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">🐛</span>
+                            <span class="emoji" aria-hidden="true">🐛</span>
                         </div>
                         <div class="skill-content">
-                            <h4>Debugging & Troubleshooting</h4>
+                            <h4>Debugging &amp; Troubleshooting</h4>
                             <p>Diagnosing software, integration, and deployment issues through testing and iterative development.</p>
                         </div>
                     </div>
+<div class="skill-item-with-icon">
+<div class="skill-icon">
+<span class="emoji" aria-hidden="true">🧰</span>
+</div>
+<div class="skill-content">
+<h4>Git, Linux &amp; SSH</h4>
+<p>Version control, command-line work, and remote deployment on Raspberry Pi systems.</p>
+</div>
+</div>
 
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">🤖</span>
+                            <span class="emoji" aria-hidden="true">🤖</span>
                         </div>
                         <div class="skill-content">
                             <h4>AI-Assisted Development</h4>
@@ -257,7 +311,7 @@
                     
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">💡</span>
+                            <span class="emoji" aria-hidden="true">💡</span>
                         </div>
                         <div class="skill-content">
                             <h4>Problem Solving</h4>
@@ -267,7 +321,7 @@
 
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">📚</span>
+                            <span class="emoji" aria-hidden="true">📚</span>
                         </div>
                         <div class="skill-content">
                             <h4>Continuous Learning</h4>
@@ -277,7 +331,7 @@
 
                     <div class="skill-item-with-icon">
                         <div class="skill-icon">
-                            <span style="font-size: 2.5rem;">🤝</span>
+                            <span class="emoji" aria-hidden="true">🤝</span>
                         </div>
                         <div class="skill-content">
                             <h4>Team Collaboration</h4>
@@ -304,16 +358,27 @@
         </div>
     </section>
 
+        </main>
+
     <footer>
         <div class="social-links" data-aos="fade-up">
-            <a href="https://www.facebook.com/share/1BYpJdVybT/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)" aria-hidden="true"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/></svg></a>
-            <a href="https://www.instagram.com/_dyoneeell" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.204-.012-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.79 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-            <a href="https://www.linkedin.com/in/jonel-andamon-7ba1b735b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)" aria-hidden="true"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/></svg></a>
+            <a href="https://www.linkedin.com/in/jonel-andamon-7ba1b735b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"> <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/> </svg>
+            </a>
+            <a href="https://github.com/jonelba" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.921.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+            <a href="https://www.facebook.com/share/1BYpJdVybT/" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"> <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/> </svg>
+            </a>
+            <a href="https://www.instagram.com/_dyoneeell" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/> </svg>
+            </a>
         </div>
         <p class="copyright">© 2026 Jonel Andamon. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/vendor/aos.js"></script>
     <script src="assets/js/portfolio.js"></script>
 </body>
 </html>
