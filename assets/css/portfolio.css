@@ -16,7 +16,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Manrope', sans-serif;
-    scroll-behavior: smooth;
 }
 
 body {
@@ -3981,4 +3980,202 @@ body {
     .project-page-connect .button-group {
         flex-wrap: nowrap;
     }
+}
+
+
+/* ====================== FIXES & ACCESSIBILITY (additive; design unchanged) ====================== */
+:root {
+    --hover-bg: #0f7a52;            /* white text on this = 5.3:1 (was 2.3:1 on #23c483) */
+    --error-color: #ef9b9b;
+}
+
+[data-theme="light"] {
+    --hover-bg: var(--primary-dark);
+    --error-color: #b3261e;
+}
+
+.sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.skip-link {
+    background: var(--primary);
+    border-radius: 0.5rem;
+    color: #0d0f0e;
+    font-weight: 700;
+    left: 1rem;
+    padding: 0.75rem 1.25rem;
+    position: absolute;
+    text-decoration: none;
+    top: -5rem;
+    transition: top 0.2s ease;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+.action-button:focus-visible,
+.icon-button:focus-visible,
+.text-link:focus-visible,
+.theme-toggle:focus-visible,
+.hamburger:focus-visible,
+.carousel-btn:focus-visible,
+.project-image-clickable:focus-visible,
+.image-modal-close:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Hover and focus colors with readable contrast */
+.action-button:hover,
+.action-button:focus-visible,
+.icon-button:hover,
+.icon-button:focus-visible,
+.dark-section .action-button:hover,
+.dark-section .icon-button:hover,
+.project-links .action-button:hover {
+    background-color: var(--hover-bg);
+    color: #fff;
+}
+
+[data-theme="light"] .action-button,
+[data-theme="light"] .dark-section .action-button,
+[data-theme="light"] .project-links .action-button {
+    color: #fff;
+}
+
+.form-status.is-error {
+    color: var(--error-color);
+}
+
+/* The logo is pale mint: darken it on the light theme so it stays visible */
+[data-theme="light"] .logo img,
+[data-theme="light"] .mobile-logo img {
+    filter: brightness(0.55) saturate(1.5);
+}
+
+/* Anchors under the fixed header */
+.project-card-vertical,
+section[id] {
+    scroll-margin-top: 110px;
+}
+
+/* Hamburger open state is now driven by aria-expanded (no inline styles) */
+.hamburger[aria-expanded="true"] .line:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .line:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    /* A closed drawer must not be reachable with the keyboard */
+    .nav-links {
+        height: 100vh;
+        height: 100dvh;
+        transition: right 0.3s ease, visibility 0s linear 0.3s;
+        visibility: hidden;
+    }
+
+    .nav-links.active {
+        transition: right 0.3s ease, visibility 0s;
+        visibility: visible;
+    }
+}
+
+/* Carousel: swipe/scroll enabled, with buttons */
+.works-carousel-track {
+    overflow-x: auto;
+}
+
+.carousel-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+}
+
+.carousel-btn {
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    color: var(--primary);
+    cursor: pointer;
+    display: inline-flex;
+    height: 2.75rem;
+    justify-content: center;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    width: 2.75rem;
+}
+
+.carousel-btn:hover {
+    background: var(--hover-bg);
+    color: #fff;
+}
+
+.hero-status {
+    color: var(--primary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-top: 1.5rem;
+}
+
+/* Contact form honeypot */
+.hp-field {
+    height: 0;
+    left: -9999px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+}
+
+/* Replaces inline styles */
+.mt-card {
+    margin-top: 1.5rem;
+}
+
+.skill-icon .emoji {
+    font-size: 2.5rem;
+}
+
+.project-links--start {
+    justify-content: flex-start;
+    margin-top: 1.5rem;
+}
+
+.fine-print {
+    color: var(--muted-text-color);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+.project-hero-image .image-caption {
+    color: var(--muted-text-color);
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+    text-align: center;
 }
