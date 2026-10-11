@@ -1,1 +1,145 @@
-jd
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentry2 Inspection Prototype | Jonel Andamon</title>
+    <meta name="description" content="An Arduino Nano and Sentry2 vision-sensor prototype built during on-the-job training that classifies products as GOOD or REJECT and reports the defect type.">
+    <meta name="theme-color" content="#0d0f0e">
+    <link rel="canonical" href="https://jonelba.github.io/myportfolio/projects/ojt-sentry2/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jonel Andamon">
+    <meta property="og:title" content="Sentry2 Inspection Prototype | Jonel Andamon">
+    <meta property="og:description" content="An Arduino Nano and Sentry2 vision-sensor prototype built during on-the-job training that classifies products as GOOD or REJECT and reports the defect type.">
+    <meta property="og:url" content="https://jonelba.github.io/myportfolio/projects/ojt-sentry2/">
+    <meta property="og:image" content="https://jonelba.github.io/myportfolio/assets/images/branding/og-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" sizes="64x64" href="../../assets/images/branding/logo.png">
+    <link rel="apple-touch-icon" href="../../assets/images/branding/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/vendor/aos.css">
+    <link rel="stylesheet" href="../../assets/css/portfolio.css">
+    <script>try{var t=localStorage.getItem('portfolio-theme');document.documentElement.dataset.theme=t==='light'?'light':'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
+    <noscript><style>[data-aos]{opacity:1!important;transform:none!important;}</style></noscript>
+</head>
+<body class="escape-project-page">
+    <div class="top-shadow"></div>
+    <div class="bottom-shadow"></div>
+    <header>
+        <div class="nav-container">
+            <div class="mobile-logo">
+                <a href="../../index.html" aria-label="Jonel Andamon, home"><img src="../../assets/images/branding/logo.png" alt="" width="40" height="40"></a>
+            </div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </button>
+            <nav class="nav-links" id="navLinks" aria-label="Main">
+                <a href="../../about.html">About</a>
+                <a class="active" aria-current="page" href="../../work.html">Work</a>
+                <div class="logo"><a href="../../index.html" aria-label="Jonel Andamon, home"><img src="../../assets/images/branding/logo.png" alt="" width="40" height="40"></a></div>
+                <a href="../../skill.html">Skills</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" aria-pressed="false">
+                <span class="theme-icon" aria-hidden="true"></span>
+                <span class="theme-label">Light mode</span>
+            </button>
+        </div>
+    </header>
+    <main id="main">
+<section class="project-detail-hero" data-aos="fade-up">
+<div class="container">
+<p class="eyebrow">Embedded System · 2025</p>
+<h1>SENTRY2 INSPECTION PROTOTYPE</h1>
+<p class="project-detail-lead">Arduino-Based Product Defect Classification</p>
+<div class="project-role-badge">IT/Arduino Team Intern</div>
+</div>
+</section>
+<section class="section dark-section">
+<div class="container project-detail-content">
+<div class="project-hero-image" data-aos="fade-up">
+<img width="1280" height="720" decoding="async" src="images/final-testing.webp" alt="Final test: the prototype's LCD reports a REJECT result for a white product with a cracking defect">
+<p class="image-caption">Final test: the prototype reports "Product: White Paso, Quality: REJECT, Issue: Cracking".</p>
+</div>
+<div class="project-detail-section" data-aos="fade-up">
+<h2>Project Overview</h2>
+<p class="details">During my on-the-job training at James Polymers Manufacturing Corporation, I designed and built a prototype quality-control system that uses an Arduino Nano and a Sentry2 vision sensor to detect defective products. The Sentry2 was trained on 6 product types and 5 defect classes: short shot, cracking, flashing, moisture, and black spots.</p>
+<p class="details">When a product is placed under the camera, the Arduino reads the sensor's result, classifies the item as GOOD or REJECT, and shows the product, the quality result, and the defect type on an LCD, with a speaker for audio feedback.</p>
+</div>
+<div class="project-detail-section" data-aos="fade-up">
+<h2>My Role</h2>
+<p class="details">I wrote the Arduino code and used the Sentry2's vision functions to build the working prototype. I also calibrated the vision parameters so the system could separate defective products from acceptable ones.</p>
+</div>
+<div class="project-detail-section" data-aos="fade-up">
+<h2>Key Features</h2>
+<ul class="project-features">
+<li>GOOD or REJECT classification for each inspected product</li>
+<li>Defect type reported on the LCD (short shot, cracking, flashing, moisture, black spots)</li>
+<li>Trained on 6 product types and 5 defect classes</li>
+<li>Display and speaker feedback for the operator</li>
+<li>Calibrated vision parameters for inspection</li>
+</ul>
+</div>
+<div class="project-detail-section" data-aos="fade-up">
+<h2>Prototype Development</h2>
+<div class="project-gallery">
+<figure><img width="1024" height="576" decoding="async" loading="lazy" src="images/initial-testing.webp" alt="Initial test setup with an Arduino Nano on a breadboard, a Sentry2 camera on a stand, and two LCD screens"><figcaption>Initial test setup</figcaption></figure>
+</div>
+</div>
+<div class="project-detail-section" data-aos="fade-up">
+<h2>Technology Stack</h2>
+<div class="tech-stack tech-stack-large"><span>Arduino Nano</span><span>Sentry2 Vision Sensor</span><span>Arduino C++</span><span>LCD Display</span><span>Speaker</span></div>
+</div>
+<div class="project-detail-section" data-aos="fade-up">
+<h2>Next Step</h2>
+<p class="details">The project presentation recommended upgrading the controller to an ESP32 so inspection results could be logged over Wi-Fi.</p>
+</div>
+<div class="project-links project-bottom-navigation" data-aos="fade-up">
+<a href="../../work.html" class="action-button">View More Works</a>
+<a href="../../work.html" class="icon-button" aria-label="View more works" aria-hidden="true" tabindex="-1">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+<path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+</svg>
+</a>
+</div>
+</div>
+</section>
+<section id="contact" class="section dark-section project-page-connect">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">LET'S CONNECT</h2>
+                <p class="section-text" data-aos="fade-up">Have a product, system, or idea that needs a thoughtful technical partner?</p>
+                <div class="button-group" data-aos="fade-up">
+                    <a href="../../contact.html" class="action-button">Contact Me</a>
+                    <a href="../../contact.html" class="icon-button" aria-label="Contact me">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+        </main>
+
+    <footer>
+        <div class="social-links" data-aos="fade-up">
+            <a href="https://www.linkedin.com/in/jonel-andamon-7ba1b735b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"> <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/> </svg>
+            </a>
+            <a href="https://github.com/jonelba" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.921.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+            <a href="https://www.facebook.com/share/1BYpJdVybT/" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"> <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/> </svg>
+            </a>
+            <a href="https://www.instagram.com/_dyoneeell" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/> </svg>
+            </a>
+        </div>
+        <p class="copyright">© 2026 Jonel Andamon. ALL RIGHTS RESERVED.</p>
+    </footer>
+    <script src="../../assets/vendor/aos.js"></script>
+    <script src="../../assets/js/portfolio.js"></script>
+</body>
+</html>
