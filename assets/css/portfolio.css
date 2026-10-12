@@ -4179,3 +4179,280 @@ section[id] {
     margin-top: 0.75rem;
     text-align: center;
 }
+
+
+/* ====================== LINKS (fixes unreadable default blue) ====================== */
+a {
+    color: inherit;
+}
+
+.contact-item a,
+.project-detail-section a:not(.action-button):not(.icon-button),
+.fine-print a,
+.details a {
+    border-bottom: 1px solid transparent;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    word-break: break-word;
+}
+
+.contact-item a:visited,
+.project-detail-section a:visited {
+    color: var(--primary);
+}
+
+.contact-item a:hover,
+.contact-item a:focus-visible,
+.project-detail-section a:not(.action-button):not(.icon-button):hover,
+.fine-print a:hover,
+.details a:hover {
+    border-bottom-color: currentColor;
+    color: var(--text-light);
+}
+
+[data-theme="light"] .contact-item a:hover,
+[data-theme="light"] .contact-item a:focus-visible,
+[data-theme="light"] .project-detail-section a:not(.action-button):not(.icon-button):hover,
+[data-theme="light"] .fine-print a:hover,
+[data-theme="light"] .details a:hover {
+    color: var(--primary-dark);
+}
+
+/* ====================== PROJECT PAGE LAYOUT ====================== */
+.project-detail-hero {
+    padding-bottom: 2.5rem;
+}
+
+.back-link {
+    align-items: center;
+    color: var(--muted-text-color);
+    display: inline-flex;
+    font-size: 0.8rem;
+    font-weight: 700;
+    gap: 0.5rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.75rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+    color: var(--primary);
+}
+
+.project-facts {
+    padding: 0 2rem 1rem;
+}
+
+.project-facts-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0 auto;
+    max-width: 1050px;
+    padding: 0;
+}
+
+.project-facts-grid .fact {
+    background: rgba(160, 240, 208, 0.05);
+    border: 1px solid rgba(160, 240, 208, 0.18);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+}
+
+.project-facts-grid dt {
+    color: var(--muted-text-color);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+}
+
+.project-facts-grid dd {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.project-intro-grid {
+    align-items: center;
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    margin-bottom: 4.5rem;
+}
+
+.project-intro-grid .project-hero-image,
+.project-intro-grid .project-detail-section,
+.project-two-col .project-detail-section {
+    margin-bottom: 0;
+}
+
+.project-two-col {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 4.5rem;
+}
+
+.feature-list {
+    border: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.feature-list li {
+    background: rgba(27, 29, 27, 0.5);
+    border: 1px solid rgba(160, 240, 208, 0.12);
+    border-radius: 12px;
+    color: var(--muted-text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 1.1rem 1.25rem 1.1rem 3.1rem;
+    position: relative;
+}
+
+.feature-list li::before {
+    background: var(--primary-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(35, 196, 131, 0.18);
+    content: "";
+    height: 0.7rem;
+    left: 1.2rem;
+    position: absolute;
+    top: 1.45rem;
+    width: 0.7rem;
+}
+
+.project-pager {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 1rem 0 2.5rem;
+}
+
+.project-pager a {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(160, 240, 208, 0.18);
+    border-radius: 14px;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-pager a:hover,
+.project-pager a:focus-visible {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.project-pager .pager-label {
+    color: var(--muted-text-color);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.project-pager .pager-title {
+    color: var(--primary);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.project-pager .pager-next {
+    text-align: right;
+}
+
+.project-page-connect .container {
+    text-align: center;
+}
+
+.project-intro-grid .project-hero-image img {
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+}
+
+.project-page-connect .section-text {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.project-detail-hero h1.long-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+}
+
+.project-gallery--single {
+    grid-template-columns: minmax(0, 760px);
+    justify-content: center;
+}
+
+/* Light theme versions of the new cards */
+[data-theme="light"] .project-facts-grid .fact {
+    background: rgba(22, 131, 91, 0.06);
+    border-color: rgba(22, 131, 91, 0.25);
+}
+
+[data-theme="light"] .feature-list li,
+[data-theme="light"] .project-pager a {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(22, 131, 91, 0.25);
+}
+
+[data-theme="light"] .project-pager a {
+    color: var(--text-light);
+}
+
+@media (max-width: 900px) {
+    .project-facts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-intro-grid,
+    .project-two-col {
+        gap: 2.5rem;
+        grid-template-columns: 1fr;
+        margin-bottom: 3.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .project-facts {
+        padding: 0 1rem 0.5rem;
+    }
+
+    .project-facts-grid {
+        gap: 0.75rem;
+    }
+
+    .project-facts-grid .fact {
+        padding: 0.9rem 1rem;
+    }
+
+    .feature-list,
+    .project-pager {
+        grid-template-columns: 1fr;
+    }
+
+    .project-pager .pager-next {
+        text-align: left;
+    }
+}
